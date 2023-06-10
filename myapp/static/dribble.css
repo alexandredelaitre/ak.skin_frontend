@@ -1,0 +1,47 @@
+body {
+    background-color: #181B1F;
+}
+.svg-list {
+    display: flex; /* Display the SVGs in a horizontal row */
+    justify-content: left; /* Center the SVGs horizontally */
+    align-items: center; /* Center the SVGs vertically */
+    gap: 25px; /* Add some spacing between SVGs */
+}
+
+.mat-button-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+#svg-slider {
+    width: 100%;
+    overflow: hidden;
+  } 
+  
+  .glide__slides {
+	display: flex;
+	overflow-x: auto;
+	white-space: nowrap;
+    height:60px;
+}
+
+.glide__slide {
+    width: 200px; /* Adjust the width as per your preference */
+    margin-right: 0px; /* Adjust the right margin as per your preference */
+    margin-left:20px;
+    min-width:200px;
+}
+.glide__slide svg {
+    width:200px;
+    min-width:200px;
+    height:60px;
+}
+
+.primary-bg{
+    background-color: #181B1F;
+}
+
+.secondary-bg{
+    background-color: #23252D;
+}

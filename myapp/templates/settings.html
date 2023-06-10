@@ -1,0 +1,28 @@
+<html>
+
+
+
+<body>
+	{% include 'navbar.html' %}
+	<script type="text/javascript">
+        const socket = io();
+
+        function submitTradeURL() {
+            const urlInput = document.getElementById('trade-url-input');
+            const tradeURL = urlInput.value;
+
+            // Emit the trade URL event
+            socket.emit('trade_url', tradeURL);
+
+            // Clear the input field
+            urlInput.value = '';
+        }
+    </script>
+    <h1>Trade URL</h1>
+    <input type="text" id="trade-url-input" placeholder="Enter trade URL">
+    <button onclick="submitTradeURL()">Submit</button>
+
+
+</body>
+
+</html>

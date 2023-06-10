@@ -1,0 +1,132 @@
+<html>
+
+
+
+<body>
+	{% include 'navbar.html' %}
+  <script>
+
+    //Initialise a list of items that have been moved.
+    var moved_to_akskins = [];
+    var moved_to_steam = [];
+    var initial_on_akskins = [];
+    var initial_on_steam = [];
+
+    function swap(item){
+      //item will likely be the item itself rather than an index
+      var steam_inventory = document.getElementById("steam_inventory");
+      var akskin_inventory = document.getElementById("akskin_inventory");
+      
+      //Remove the item from the current inventory it is in and move it to the other one.
+      if(item.parentNode.id == "steam_inventory"){
+        akskin_inventory.appendChild(item);
+        moved_to_akskins.push(item.id);
+        //Check if item is in the moved_to_steam list and remove it if it is.
+        if(moved_to_steam.includes(item.id)){
+          moved_to_steam.splice(moved_to_steam.indexOf(item.id), 1);
+        }
+      }
+      else{
+        steam_inventory.appendChild(item);
+        moved_to_steam.push(item.id);
+        //Check if item is in the moved_to_akskins list and remove it if it is.
+        if(moved_to_akskins.includes(item.id)){
+          moved_to_akskins.splice(moved_to_akskins.indexOf(item.id), 1);
+        }
+      }
+    }
+    
+
+  </script>
+  <div class="flex w-full ">
+    <div class="grid h-auto flex-grow card rounded-box place-items-center primary-bg">
+      <div id="steam_inventory" class="grid grid-cols-4 gap-4" style="width: 50vw;">
+        {% for item in inventory %}
+        <div id="{{item.assetid}}" class="rounded-md p-2 grow secondary-bg" style="height:130px; width:150px;" onclick="swap(this);">
+          <div class="divide-y divide-none flex items-center justify-center">
+            <img src="https://steamcommunity-a.akamaihd.net/economy/image/{{ item.icon_url }}" style="height:100px;">
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="grid h-auto flex-grow card rounded-box place-items-center primary-bg">
+      <div id="akskin_inventory" class="grid grid-cols-4 gap-4" style="width: 50vw;">
+        {% for item in akskin_inventory %}
+        <div id="{{item.assetid}}" class="rounded-md p-2 grow secondary-bg" style="height:130px; width:150px;" onclick="swap(this);">
+          <div class="divide-y divide-none flex items-center justify-center">
+            <img src="https://steamcommunity-a.akamaihd.net/economy/image/{{ item.icon_url }}" style="height:100px;">
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //Add the items that the user has on both sides to the inventory arrays by looking at 
+    
+    inventory_items = document.getElementById("steam_inventory").children;
+    akskin_inventory_items = document.getElementById("akskin_inventory").children;
+    for(var i = 0; i < inventory_items.length; i++){
+      initial_on_steam.push(inventory_items[i].id);
+    }
+    for(var i = 0; i < akskin_inventory_items.length; i++){
+      initial_on_akskins.push(akskin_inventory_items[i].id);
+    }
+
+    
+
+    function logMovedItems(){
+      //Print the difference in the two arrays.
+      moved_to_akskins_checked = moved_to_akskins.filter(x => !initial_on_akskins.includes(x));
+      moved_to_steam_checked = moved_to_steam.filter(x => !initial_on_steam.includes(x));
+
+      console.log("Items moved to akskins: " + moved_to_akskins_checked);
+      console.log("Items moved to steam: " + moved_to_steam_checked);
+    
+    }
+
+    function tradeItems(){
+      //Send the items to the server to be traded.
+      moved_to_akskins_checked = moved_to_akskins.filter(x => !initial_on_akskins.includes(x));
+      moved_to_steam_checked = moved_to_steam.filter(x => !initial_on_steam.includes(x));
+
+      const data = {
+        move_to_akskins: moved_to_akskins_checked,
+        move_to_steam: moved_to_steam_checked
+      };
+
+      fetch('/make_trade_offer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);  // Output the response from the Flask route
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+
+  </script>
+
+  
+  
+  
+  
+  <button onclick="logMovedItems()">Log Moved Items</button>
+  <button onclick="tradeItems()">Trade Items</button>
+  
+  
+      
+
+
+</body>
+
+</html>
