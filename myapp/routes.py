@@ -30,6 +30,7 @@ main = Blueprint('main', __name__)
 STEAM_OPENID_URL = "https://steamcommunity.com/openid/login"
 
 
+
 @main.route('/protected')
 @login_required
 def protected_route():
@@ -116,45 +117,18 @@ def offer_accepted():
 
     return 'Array processed successfully'
 
-
-
-
-
-
-
-
-@main.route("/login")
-def login():
-    steam_login_url = STEAM_OPENID_URL + "/?openid.mode=checkid_setup" \
-        "&openid.ns=http://specs.openid.net/auth/2.0" \
-        "&openid.identity=http://specs.openid.net/auth/2.0/identifier_select" \
-        "&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select" \
-        "&openid.return_to=" + urllib.parse.quote(request.url_root + "steam_login/return", safe='')
-    return redirect(steam_login_url)
-
-@main.route("/steam_login/return")
+@main.route("/login_dummy")
 def steam_login_return():
-    oidconsumer = consumer.Consumer({}, None)
-    return_to = request.url_root + "steam_login/return"
-    response = oidconsumer.complete(request.args.to_dict(), return_to)
-    if response.status == "success":
-        steam_id = response.identity_url.split("/")[-1]
-        session['steam_id'] = steam_id
-        profile_url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={steam_api_key}&steamids={steam_id}"
-        print(profile_url)
-        profile_response = requests.get(profile_url)
-        print(profile_response)
-        profile_data = profile_response.json()
-        print(profile_data)
-        profile_picture_url = profile_data["response"]["players"][0]["avatarmedium"]
-        print(profile_picture_url)
+    if True:
+        steam_id="1"
         user = User.query.filter_by(steamid=steam_id).first()
         if user is None:
-            user = User(steamid=steam_id, balance=0.0, tradeurl="", email="", name="", avatar=profile_picture_url)
+            user = User(steamid=steam_id, balance=0.0, tradeurl="", email="", name="", avatar="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTVvKAffVNh8bcKrd7o8w_WGTNv6K_Wxhd8qgZGfNfTw7z1WcHrrfKXrzujGvr16BaTRQ2tYbPxFwnHtlA")
             db.session.add(user)
             db.session.commit()
+            print("User added to database")
         else:
-            user.avatar = profile_picture_url
+            user.avatar = "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTVvKAffVNh8bcKrd7o8w_WGTNv6K_Wxhd8qgZGfNfTw7z1WcHrrfKXrzujGvr16BaTRQ2tYbPxFwnHtlA"
             db.session.commit()
         login_user(user)
         return redirect(url_for('main.profile'))
@@ -163,14 +137,11 @@ def steam_login_return():
 
 @main.route("/profile")
 def profile():
-    if 'steam_id' in session:
-        # User is logged in, show their profile page
-        steam_id = session['steam_id']
-        # Do something with the steam_id
-        return render_template("profile.html", steam_id=steam_id)
-    else:
-        # User is not logged in, redirect to login page
-        return redirect(url_for('main.login'))
+    
+    steam_id = current_user.steamid
+    # Do something with the steam_id
+    return render_template("profile.html", steam_id=steam_id)
+    
 
 @main.route('/logout')
 @login_required
