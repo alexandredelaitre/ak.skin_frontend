@@ -1,4 +1,5 @@
 <head>
+  <link href='https://css.gg/css' rel='stylesheet'>
 	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='dribble.css') }}">
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@3.0.1/dist/full.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -6,13 +7,22 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
 </head>
 <nav class="text-white py-4 px-6 flex justify-between items-center">
-    <div class="flex items-center">
-        <span class="text-xl font-semibold">ak.skin</span>
+    <div class="flex items-center" id="title">
+        <a href="/">ak.skin</a>
     </div>
-    <div class="flex space-x-32">
-        <a href="#" class="text-gray-300 hover:text-white">Buy</a>
-        <a href="#" class="text-gray-300 hover:text-white">Sell</a>
-        <a href="#" class="text-gray-300 hover:text-white">Exchange</a>
+    <div class="flex space-x-20" id="nav_bar_items">
+        <a href="/" id="nav_buy" class="flex mx-5">
+          <i class="gg-shopping-cart inline-block box-border relative w-5 h-5 mr-1"></i>
+          <span>BUY</span>
+        </a>
+        <a href="/" id="nav_sell" class="flex mx-5">
+          <i class="gg-tag inline-block box-border relative w-5 h-3 mr-2.5 my-1.5"></i>
+          <span>SELL</span>
+        </a>
+        <a href="/"id="nav_exchange" class="flex mx-5">
+          <i class="gg-repeat box-border relative inline-block w-3 h-1 mr-2 my-2.5"></i>
+          <span>EXCHANGE</span>
+        </a>
     </div>
     <div>
         {% if not current_user.is_authenticated %}
@@ -40,7 +50,10 @@
                   <li><a href="/sales-fees" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sales Fees</a></li>
                   <li><a href="/buy-orders" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Buy Orders</a></li>
                   <li><a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a></li>
-                  <li><a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a></li>
+                  <li>
+                    <a href="/logout" class="flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout<i class="gg-log-out" style="font-size: 5px;"></i></a>
+                    
+                  </li>
                 </ul>
               </div>
             </div>
@@ -56,7 +69,7 @@
         <a href="/itemset/knives">
             <svg xmlns="http://www.w3.org/2000/svg">
                 <g transform="scale(0.4)">
-                    <path fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                    <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                     <text x="250" y="75" text-anchor="middle" dominant-baseline="middle"
                         style="font-size: 50px; user-select:none;" fill="#ffffff">Knives</text>
                 </g>
@@ -68,73 +81,73 @@
           <a href="/itemset/pistols">
           <svg xmlns="http://www.w3.org/2000/svg" >
             <g transform="scale(0.4)">
-                <path fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                 <text x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
                     fill="#ffffff">Pistols</text>
             </g>
         </svg></a>
         </li>
         <li class="glide__slide">
-            <!-- SVG Icon 2 -->
+            <!-- SVG Icon 3 -->
             <a href="/itemset/smgs">
-            <svg xmlns="http://www.w3.org/2000/svg" >
+            <svg xmlns="http://www.w3.org/2000/svg">
               <g transform="scale(0.4)">
-                  <path fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                   <text x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
                       fill="#ffffff">SMGs</text>
               </g>
           </svg></a>
           </li>
           <li class="glide__slide">
-            <!-- SVG Icon 2 -->
+            <!-- SVG Icon 4 -->
             <a href="/itemset/rifles">
-            <svg xmlns="http://www.w3.org/2000/svg" >
+            <svg xmlns="http://www.w3.org/2000/svg">
               <g transform="scale(0.4)">
-                  <path fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                   <text x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
                       fill="#ffffff">Rifles</text>
               </g>
           </svg></a>
           </li>
           <li class="glide__slide">
-            <!-- SVG Icon 2 -->
+            <!-- SVG Icon 5 -->
             <a href="/itemset/snipers">
-            <svg xmlns="http://www.w3.org/2000/svg" >
+            <svg xmlns="http://www.w3.org/2000/svg">
               <g transform="scale(0.4)">
-                  <path fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                   <text x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
                       fill="#ffffff">Sniper Rifles</text>
               </g>
           </svg></a>
           </li>
           <li class="glide__slide">
-            <!-- SVG Icon 2 -->
+            <!-- SVG Icon 6 -->
             <a href="/itemset/shotguns">
-            <svg xmlns="http://www.w3.org/2000/svg" >
+            <svg xmlns="http://www.w3.org/2000/svg">
               <g transform="scale(0.4)">
-                  <path fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                   <text x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
                       fill="#ffffff">Shotguns</text>
               </g>
           </svg></a>
           </li>
           <li class="glide__slide">
-            <!-- SVG Icon 2 -->
-            <a href="/itemset/itemsets">
+            <!-- SVG Icon 7 -->
+            <a href="/itemset/itemsets" >
             <svg xmlns="http://www.w3.org/2000/svg" >
-              <g transform="scale(0.4)">
-                  <path fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+              <g transform="scale(0.4)"class="my-path">
+                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                   <text x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
                       fill="#ffffff">Itemsets</text>
               </g>
           </svg></a>
           </li>
           <li class="glide__slide">
-            <!-- SVG Icon 2 -->
+            <!-- SVG Icon 8 -->
             <a href="/itemset/contraband">
             <svg xmlns="http://www.w3.org/2000/svg" >
               <g transform="scale(0.4)">
-                  <path fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                   <text x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
                       fill="#ffffff" >Contraband</text>
               </g>
@@ -163,4 +176,12 @@ new Glide('#svg-slider', {
     hoverpause: true,
     
     }).mount();
+
+const slcList = document.querySelectorAll('.nav');
+slcList.forEach(slc => {
+  slc.addEventListener('click', () => {
+    document.querySelector('.selected')?.classList.remove('selected');
+    slc.classList.add('selected');
+  });
+});
 </script>
