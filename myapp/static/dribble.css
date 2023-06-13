@@ -1,6 +1,63 @@
 body {
     background-color: #181B1F;
 }
+
+#title { 
+    font-family: 'antonregular';
+    font-stretch: extra-expanded;
+    background-color: #774be7;
+    background: linear-gradient(135deg, rgba(64,201,255,1) 0%, rgba(232,28,255,1) 100%);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-size: clamp(1rem, 2.5vw, 2rem); 
+  }
+
+#title:hover {
+    animation: shiny 2s ease-in-out infinite alternate;
+}
+
+#nav_bar_items {
+    font-family: 'Cabin';
+    font-size: clamp(1rem, 2vw, 1.2rem); 
+  } 
+
+#nav_buy:hover, #nav_sell:hover, #nav_exchange:hover { 
+    font-weight: bold;
+    color: hsl(0, 0%, 79%);
+    background: #c9c9c9;
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.selected {
+    font-weight: bold;
+    color: #ff0000;
+    background: #ff0000;
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+#nav_buy:active::after, #nav_sell:active::after, #nav_exchange:active::after {
+    font-weight: bold;
+    color: #ff0000;
+    background: #ff0000;
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+
 .svg-list {
     display: flex; /* Display the SVGs in a horizontal row */
     justify-content: left; /* Center the SVGs horizontally */
@@ -45,3 +102,29 @@ body {
 .secondary-bg{
     background-color: #23252D;
 }
+
+.my-path:hover {
+    fill :#f3598c;
+}
+
+@font-face {
+    font-family: 'antonregular';
+    src: url('fonts/anton-regular-webfont.woff2') format('woff2'),
+         url('fonts/santon-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('fonts/cabin-v26-latin-regular.woff2') format('woff2');
+  }
+
+@keyframes shiny {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+  }

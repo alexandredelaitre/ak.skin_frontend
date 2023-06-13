@@ -153,6 +153,14 @@ def logout():
 def exchange():
     return render_template("exchange.html")
 
+@main.route("/buy")
+def buy():
+    return render_template("buy.html")
+
+@main.route("/sell")
+def sell():
+    return render_template("sell.html")
+
 @main.route('/itemset/<itemset>', methods=['GET'])
 def itemsets(itemset):
     print(itemset.lower())
