@@ -103,9 +103,6 @@ body {
     background-color: #23252D;
 }
 
-.my-path:hover {
-    fill :#f3598c;
-}
 
 @font-face {
     font-family: 'antonregular';
