@@ -39,10 +39,10 @@
 
   </script>
 
-  <div class="flex w-full ">
-    <div class="container mx-auto h-auto flex-grow card rounded-box place-items-center primary-bg">
-      <a class=" w-full text-white text-xl text-center"> STEAM </a>
-      <div id="steam_inventory" class="grid grid-cols-5 gap-1">
+  <div class="flex w-full">
+    <div class="container mx-10 flex-grow h-auto card rounded-box place-items-start primary-bg">
+      <img src="https://community.cloudflare.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016" class=" mx-auto py-6" width="176" height="44">
+      <div id="steam_inventory" class="grid grid-cols-4 gap-1">
         {% for item in inventory %}
         <div id="{{item.assetid}}" class="rounded-md p-2 grow secondary-bg" style="height:130px; width:150px;" onclick="swap(this);">
           <div class="divide-y divide-none flex items-center justify-center">
@@ -52,10 +52,18 @@
         {% endfor %}
       </div>
     </div>
-    
-    <div class="container mx-auto h-auto flex-grow card rounded-box place-items-center primary-bg">
-      <a class=" w-full text-white text-xl text-center"> ak.skin </a>
-      <div id="akskin_inventory" class="grid grid-cols-5 gap-1">
+    <div class="container w-10 h-50 card rounded-box place-items-center"> 
+      <button
+        type="button"
+        class="w-20 inline-block rounded bg-primary px-5 pb-5 pt-5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+        Button
+      </button>
+    </div>"
+    <div class="container mx-20 h-auto flex-grow card rounded-box place-items-start primary-bg">
+      <div class="text-center py-6" id="title">
+        <a href="/">ak.skin</a>
+    </div>
+      <div id="akskin_inventory" class="grid grid-cols-4 gap-1">
         {% for item in akskin_inventory %}
         <div id="{{item.assetid}}" class="rounded-md p-2 grow secondary-bg" style="height:130px; width:150px;" onclick="swap(this);">
           <div class="divide-y divide-none flex items-center justify-center">
@@ -123,8 +131,8 @@
   
   
   
-  <button onclick="logMovedItems()">Log Moved Items</button>
-  <button onclick="tradeItems()">Trade Items</button>
+  <button onclick="logMovedItems()">Log Moved Items </button>
+
   
   
       
