@@ -38,9 +38,11 @@
     
 
   </script>
+
   <div class="flex w-full ">
-    <div class="grid h-auto flex-grow card rounded-box place-items-center primary-bg">
-      <div id="steam_inventory" class="grid grid-cols-4 gap-4" style="width: 50vw;">
+    <div class="container mx-auto h-auto flex-grow card rounded-box place-items-center primary-bg">
+      <a class=" w-full text-white text-xl text-center"> STEAM </a>
+      <div id="steam_inventory" class="grid grid-cols-5 gap-1">
         {% for item in inventory %}
         <div id="{{item.assetid}}" class="rounded-md p-2 grow secondary-bg" style="height:130px; width:150px;" onclick="swap(this);">
           <div class="divide-y divide-none flex items-center justify-center">
@@ -51,8 +53,9 @@
       </div>
     </div>
     
-    <div class="grid h-auto flex-grow card rounded-box place-items-center primary-bg">
-      <div id="akskin_inventory" class="grid grid-cols-4 gap-4" style="width: 50vw;">
+    <div class="container mx-auto h-auto flex-grow card rounded-box place-items-center primary-bg">
+      <a class=" w-full text-white text-xl text-center"> ak.skin </a>
+      <div id="akskin_inventory" class="grid grid-cols-5 gap-1">
         {% for item in akskin_inventory %}
         <div id="{{item.assetid}}" class="rounded-md p-2 grow secondary-bg" style="height:130px; width:150px;" onclick="swap(this);">
           <div class="divide-y divide-none flex items-center justify-center">
