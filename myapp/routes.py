@@ -135,6 +135,12 @@ def steam_login_return():
     else:
         return "Failed to log in with Steam"
 
+@main.route("/item/<item>", methods=['GET'])
+def item(item):
+    item = []
+    return render_template("item.html", item=item)
+
+
 @main.route("/profile")
 def profile():
     

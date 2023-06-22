@@ -1,35 +1,41 @@
 <head>
-  <link href='https://css.gg/css' rel='stylesheet'>
 	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='dribble.css') }}">
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@3.0.1/dist/full.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.2.0/svg.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&family=Overlock+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
-<div class="nav_bar">
-<nav class="text-white py-4 px-6 flex justify-between items-center">
-    <div class="flex items-center" id="title">
-        <a href="/">ak.skin</a>
+<nav class="text-white py-0 pt-4 px-0 flex justify-between items-center" style="max-height:72px;">
+    <div class="flex items-center pl-6">
+        <a href="/" class="text-xl font-semibold" style="z-index:15;">ak.skin</a>
     </div>
-    <div class="flex space-x-20" id="nav_bar_items">
-        <a href="/" id="nav_buy" class="flex mx-5">
-          <i class="gg-shopping-cart inline-block box-border relative w-5 h-5 mr-1"></i>
-          <span>BUY</span>
-        </a>
-        <a href="/" id="nav_sell" class="flex mx-5">
-          <i class="gg-tag inline-block box-border relative w-5 h-3 mr-2.5 my-1.5"></i>
-          <span>SELL</span>
-        </a>
-        <a href="/"id="nav_exchange" class="flex mx-5">
-          <i class="gg-repeat box-border relative inline-block w-3 h-1 mr-2 my-2.5"></i>
-          <span>EXCHANGE</span>
-        </a>
+    <div class="svg-container absolute" style="z-index:10;width: 100%; min-height:72px; max-height: 72px; display: flex; justify-content: center; align-items: center;">
+      <svg id="navbar_svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" style="min-height:72px; max-height: 72px; width:100%;" preserveAspectRatio="none"  >
+        
+        <path d="M 120 72 L 199 72 C 265 72 235 0 275 0 M 120 72 C 55 72 85 0 45 0 L 275 0" fill="#0E1216" fill-rule="evenodd" />
+      </svg>
+      
     </div>
-    <div>
+    <div class="absolute px-0" style="z-index:11;width:100vw;">
+    <ul class="menu menu-horizontal px-1 mx-auto w-full justify-center" style="z-index:11; position:relative;">
+      <li><a class="mx-6" style="font-size: 20px;font-family: 'Montserrat', sans-serif;">BUY</a></li>
+      <li><a class="mx-6" style="font-size: 20px;font-family: 'Montserrat', sans-serif;">SELL</a></li>
+      <li><a class="mx-6" style="font-size: 20px;font-family: 'Montserrat', sans-serif;">FAQ</a></li>
+    </ul>
+  </div>
+    
+    
+
+    <div class="pr-6" style="z-index:10000;">
         {% if not current_user.is_authenticated %}
         <a href="/login"><button class="text-white py-2 px-4 rounded-lg" style="background: rgb(64,201,255);
         background: linear-gradient(135deg, rgba(64,201,255,1) 0%, rgba(232,28,255,1) 100%);">
-            <span class="mat-button-wrapper"><svg class="mr-2" style="height:17px;width:17px" viewBox="0 0 16 16">
+            <span class="mat-button-wrapper" style="white-space: nowrap;"><svg class="mr-2" style="height:17px;width:17px" viewBox="0 0 16 16">
                     <path fill="currentColor" fill-rule="evenodd"
                         d="M11.4511147,7.2045866 C10.3137811,7.2045866 9.391029,6.27778855 9.391029,5.13378037 C9.391029,3.98977218 10.3137811,3.06192986 11.4511147,3.06192986 C12.5894873,3.06192986 13.512759,3.98977218 13.512759,5.13378037 C13.512759,6.27778855 12.5894873,7.2045866 11.4511147,7.2045866 L11.4511147,7.2045866 Z M11.4469581,7.89589962 C9.93449674,7.89589962 8.70364103,6.65842842 8.70364103,5.13795748 C8.70364103,3.61853082 9.93449674,2.38105963 11.4469581,2.38105963 C12.9594195,2.38105963 14.1907948,3.61853082 14.1907948,5.13795748 C14.1907948,6.65842842 12.9594195,7.89589962 11.4469581,7.89589962 L11.4469581,7.89589962 Z M6.69291431,12.9726644 C6.19984463,14.1589659 4.84065571,14.7223547 3.65915892,14.2284105 C3.11413248,14.0002354 2.70263492,13.5830457 2.46519251,13.0854465 L3.805677,13.6430918 C4.67699191,14.0075453 5.67664003,13.5929664 6.03877866,12.7189044 C6.40195644,11.8443204 5.98993931,10.8397235 5.11914396,10.47527 L3.7334571,9.89934982 C4.26809219,9.69571532 4.87598631,9.68840537 5.44387373,9.92545681 C6.01643726,10.1645968 6.46066758,10.6141591 6.69603171,11.1895571 C6.93191542,11.7649551 6.93087628,12.3993549 6.69291431,12.9726644 L6.69291431,12.9726644 Z M7.33870053,5.14646114 C7.33870053,5.16473604 7.32886509,5.17450727 7.32990422,5.19173788 L4.67699191,9.05766055 C4.24730948,9.03886352 3.81606835,9.11405165 3.40716863,9.28322492 C3.22687866,9.35684663 3.05801918,9.44769894 2.89955105,9.55212689 C2.89955105,9.55212689 0.966015285,8.74890927 -0.000752598863,8.34730046 C-0.000752598863,8.34730046 -0.00183061262,8.34730182 -0.000752598862,10.537 C4.19338609e-13,12.0657043 5.43319729e-13,12.0657043 5.43319729e-13,12.0657043 C0.543057287,12.2913196 1.61933642,12.7340465 1.61933642,12.7340465 C1.82612433,13.6603224 2.45999684,14.4738161 3.39521857,14.8648988 C4.92534524,15.5066085 6.68927733,14.7756129 7.32626725,13.2394778 C7.49148975,12.8384744 7.56890533,12.4171077 7.55747484,11.9967852 L11.3534359,9.27539283 C11.38461,9.27643711 11.4157841,9.27695925 11.4469581,9.27695925 C13.7179882,9.27695925 15.5645316,7.41970817 15.5645316,5.13795748 C15.5645316,2.8562068 13.7179882,1 11.4469581,1 C9.175928,1 7.33870053,2.86471046 7.33870053,5.14646114 Z">
                     </path>
@@ -51,10 +57,7 @@
                   <li><a href="/sales-fees" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sales Fees</a></li>
                   <li><a href="/buy-orders" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Buy Orders</a></li>
                   <li><a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a></li>
-                  <li>
-                    <a href="/logout" class="flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout<i class="gg-log-out" style="font-size: 5px;"></i></a>
-                    
-                  </li>
+                  <li><a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a></li>
                 </ul>
               </div>
             </div>
@@ -62,103 +65,102 @@
         {% endif %}
     </div>
 </nav>
-<div style="z-index:0;" id="svg-slider" class="glide">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides" style="overflow-x:hidden;">
-        <li class="glide__slide">
-        <!-- SVG Icon 1 -->
-        <a href="/itemset/knives">
-            <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
-                <g transform="scale(0.4)">
-                    <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
-                    <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle"
-                        style="font-size: 50px; user-select:none;" fill="#ffffff">Knives</text>
-                </g>
-            </svg>
-        </a>
-        </li>
-        <li class="glide__slide">
-          <!-- SVG Icon 2 -->
-          <a href="/itemset/pistols">
-          <svg name="item-svg" xmlns="http://www.w3.org/2000/svg" >
+<div style="z-index:0;" id="svg-slider" class="glide pt-8 pb-4">
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides" style="overflow-x:hidden;">
+      <li class="glide__slide">
+      <!-- SVG Icon 1 -->
+      <a href="/itemset/knives">
+          <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
+              <g transform="scale(0.4)">
+                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                  <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle"
+                      style="font-size: 50px; user-select:none;" fill="#ffffff">Knives</text>
+              </g>
+          </svg>
+      </a>
+      </li>
+      <li class="glide__slide">
+        <!-- SVG Icon 2 -->
+        <a href="/itemset/pistols">
+        <svg name="item-svg" xmlns="http://www.w3.org/2000/svg" >
+          <g transform="scale(0.4)">
+              <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+              <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
+                  fill="#ffffff">Pistols</text>
+          </g>
+      </svg></a>
+      </li>
+      <li class="glide__slide">
+          <!-- SVG Icon 3 -->
+          <a href="/itemset/smgs">
+          <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
             <g transform="scale(0.4)">
                 <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
                 <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
-                    fill="#ffffff">Pistols</text>
+                    fill="#ffffff">SMGs</text>
             </g>
         </svg></a>
         </li>
         <li class="glide__slide">
-            <!-- SVG Icon 3 -->
-            <a href="/itemset/smgs">
-            <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
-              <g transform="scale(0.4)">
-                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
-                  <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
-                      fill="#ffffff">SMGs</text>
-              </g>
-          </svg></a>
-          </li>
-          <li class="glide__slide">
-            <!-- SVG Icon 4 -->
-            <a href="/itemset/rifles">
-            <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
-              <g transform="scale(0.4)">
-                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
-                  <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
-                      fill="#ffffff">Rifles</text>
-              </g>
-          </svg></a>
-          </li>
-          <li class="glide__slide">
-            <!-- SVG Icon 5 -->
-            <a href="/itemset/snipers">
-            <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
-              <g transform="scale(0.4)">
-                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
-                  <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
-                      fill="#ffffff">Sniper Rifles</text>
-              </g>
-          </svg></a>
-          </li>
-          <li class="glide__slide">
-            <!-- SVG Icon 6 -->
-            <a href="/itemset/shotguns">
-            <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
-              <g transform="scale(0.4)">
-                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
-                  <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
-                      fill="#ffffff">Shotguns</text>
-              </g>
-          </svg></a>
-          </li>
-          <li class="glide__slide">
-            <!-- SVG Icon 8 -->
-            <a href="/itemset/itemsets">
-            <svg name="item-svg" xmlns="http://www.w3.org/2000/svg" >
-              <g transform="scale(0.4)">
-                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
-                  <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
-                      fill="#ffffff" >Itemsets</text>
-              </g>
-          </svg></a>
-          </li>
-          <li class="glide__slide">
-            <!-- SVG Icon 8 -->
-            <a href="/itemset/contraband">
-            <svg name="item-svg" xmlns="http://www.w3.org/2000/svg" >
-              <g transform="scale(0.4)">
-                  <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
-                  <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
-                      fill="#ffffff" >Contraband</text>
-              </g>
-          </svg></a>
-          </li>
-        <!-- Add more SVG icons as needed -->
-      </ul>
-    </div>
-  
+          <!-- SVG Icon 4 -->
+          <a href="/itemset/rifles">
+          <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
+            <g transform="scale(0.4)">
+                <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
+                    fill="#ffffff">Rifles</text>
+            </g>
+        </svg></a>
+        </li>
+        <li class="glide__slide">
+          <!-- SVG Icon 5 -->
+          <a href="/itemset/snipers">
+          <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
+            <g transform="scale(0.4)">
+                <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
+                    fill="#ffffff">Sniper Rifles</text>
+            </g>
+        </svg></a>
+        </li>
+        <li class="glide__slide">
+          <!-- SVG Icon 6 -->
+          <a href="/itemset/shotguns">
+          <svg name="item-svg" xmlns="http://www.w3.org/2000/svg">
+            <g transform="scale(0.4)">
+                <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
+                    fill="#ffffff">Shotguns</text>
+            </g>
+        </svg></a>
+        </li>
+        <li class="glide__slide">
+          <!-- SVG Icon 8 -->
+          <a href="/itemset/itemsets">
+          <svg name="item-svg" xmlns="http://www.w3.org/2000/svg" >
+            <g transform="scale(0.4)">
+                <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
+                    fill="#ffffff" >Itemsets</text>
+            </g>
+        </svg></a>
+        </li>
+        <li class="glide__slide">
+          <!-- SVG Icon 8 -->
+          <a href="/itemset/contraband">
+          <svg name="item-svg" xmlns="http://www.w3.org/2000/svg" >
+            <g transform="scale(0.4)">
+                <path class="my-path" fill="#23252D" d="M0 0 L450 0 L500 50 L500 150 L50 150 L0 100" />
+                <text class="svg-text" x="250" y="75" text-anchor="middle" dominant-baseline="middle" style="font-size: 50px; user-select:none;"
+                    fill="#ffffff" >Contraband</text>
+            </g>
+        </svg></a>
+        </li>
+      <!-- Add more SVG icons as needed -->
+    </ul>
   </div>
+
 </div>
 <script>
 const glideContainer = document.getElementById('svg-slider');
@@ -178,21 +180,22 @@ new Glide('#svg-slider', {
     
     }).mount();
 
-const slcList = document.querySelectorAll('.nav');
-slcList.forEach(slc => {
-  slc.addEventListener('click', () => {
-    document.querySelector('.selected')?.classList.remove('selected');
-    slc.classList.add('selected');
-  });
-});
-</script>
 
+    const slcList = document.querySelectorAll('.nav');
+      slcList.forEach(slc => {
+        slc.addEventListener('click', () => {
+          document.querySelector('.selected')?.classList.remove('selected');
+          slc.classList.add('selected');
+        });
+      });
+
+</script>
 <script>
   //Make the svg hoverable when the mouse is on the text not the path
   const svg = document.getElementsByName('item-svg');
   svg.forEach(svg => {
     svg.addEventListener('mouseenter', () => {
-      svg.querySelector('.my-path').style.fill = "#f3598c";
+      svg.querySelector('.my-path').style.fill = "#0E1216";
     });
     svg.addEventListener('mouseleave', () => {
       svg.querySelector('.my-path').style.fill = "#23252D";
@@ -200,5 +203,7 @@ slcList.forEach(slc => {
   });
   
 
+
+</script>
 
 </script>
