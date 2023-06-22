@@ -1,7 +1,4 @@
 <html>
-
-
-
 <body>
 	{% include 'navbar.html' %}
 	<script type="text/javascript">
@@ -17,12 +14,55 @@
             // Clear the input field
             urlInput.value = '';
         }
+
+
+        function showOptions() {
+            var div = document.getElementById('settings-card');
+            var displaySetting = div.style.display;
+            var accountBtn = document.getElementById('showAccount');
+
+            if(displaySetting == 'block'){
+                div.style.display = 'none';
+            }
+            else {
+                div.style.display = 'block';
+            }
+        }
     </script>
-    <h1>Trade URL</h1>
-    <input type="text" id="trade-url-input" placeholder="Enter trade URL">
-    <button onclick="submitTradeURL()">Submit</button>
+
+<div class="flex flex-row">
+    <div class="h-fit w-48 ml-10 mt-10" id="settings-card-options">
+        <button class="settings-button text-white mx-5 my-5" id="showAccount" onclick="showOptions()">Account Settings</button>
+        <button class="settings-button text-white mx-5 my-5" id="dummy" onclick="showOptions()">Dummy</button>
+    </div>
+    <div class="flex flex-column w-full">
+        <div class="h-fit justify-left mr-10 mt-10 align-left w-full" id="settings-card">
+            <h1 class="text-white text-center my-5">Your Settings</h1>
+            <div class="items-center mx-10 flex align-text-middle relative">
+                <span class="text-white text-center ml-5 my-4">Your trading URL:</span>
+                <input class="w-1/4 mx-5 h-10 rounded-md text-white text-center" type="text" id="trade-url-input" placeholder=" Enter trade URL">
+                <button class="btn btn-sm absolute right-0 w-auto flex" onclick="submitTradeURL()">Submit</button>
+            </div>
+            <div class="items-center mx-10 flex align-text-middle relative">
+                <span class="text-white text-center ml-5 my-4">Your email:</span>
+                <input class="w-1/4 mx-5 h-10 rounded-md text-white text-center" type="text" id="trade-url-input" placeholder=" Enter email">
+                <button class="btn btn-sm absolute right-0 w-auto flex">Submit</button>
+            </div>
+            <div class="items-center mx-10 flex mt-10   mb-4 align-text-middle relative">
+                <button class="btn btn-sm absolute bottom-0 right-0 w-auto flex" id="delete-btn">Delete Account</button>
+            </div>
+        </div>
+
+        <div class="h-fit justify-left mr-10 mt-10 align-left w-full" id="dummy">
+            <span class="text-white"> Dummy!!!</span>
+        </div>
+    </div>
+
+</div>
+
+
+
 
 
 </body>
-
 </html>

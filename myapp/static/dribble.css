@@ -1,5 +1,7 @@
 body {
     background-color: #181B1F;
+    margin: 0;
+    padding: 0;
 }
 #nav_bar {
 }
@@ -127,3 +129,19 @@ body {
         background-position: 100% 50%;
     }
   }
+
+#settings-card, #dummy {
+    background: #23252D;
+}
+#settings-card-options {
+    background: #2a2c33;
+}
+
+#trade-url-input {
+    background-color: #35373f;
+}
+
+#delete-btn {
+    background-color: #b91c1c;
+    border-color: #b91c1c;
+}
