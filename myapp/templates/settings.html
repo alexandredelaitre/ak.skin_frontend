@@ -20,20 +20,23 @@
             var div = document.getElementById('settings-card');
             var displaySetting = div.style.display;
             var accountBtn = document.getElementById('showAccount');
-
+            var kycSection = document.getElementById('kyc-section');
             if(displaySetting == 'block'){
                 div.style.display = 'none';
+                kycSection.style.display = 'block';
+
             }
             else {
                 div.style.display = 'block';
+                kycSection.style.display = 'none';
             }
         }
     </script>
 
 <div class="flex flex-row">
     <div class="h-fit w-48 ml-10 mt-10" id="settings-card-options">
-        <button class="settings-button text-white mx-5 my-5" id="showAccount" onclick="showOptions()">Account Settings</button>
-        <button class="settings-button text-white mx-5 my-5" id="dummy" onclick="showOptions()">Dummy</button>
+        <button class="settings-button text-white mx-5 my-5" id="showAccount" onclick="showOptions()">Trade Settings</button>
+        <button class="settings-button text-white mx-5 my-5" id="kyc" onclick="showOptions()">KYC Settings</button>
     </div>
     <div class="flex flex-column w-full">
         <div class="h-fit justify-left mr-10 mt-10 align-left w-full" id="settings-card">
@@ -53,7 +56,7 @@
             </div>
         </div>
 
-        <div class="h-fit justify-left mr-10 mt-10 align-left w-full" id="dummy">
+        <div class="h-fit justify-left mr-10 mt-10 align-left w-full" id="kyc-section" style="display:none;">
             <span class="text-white"> Dummy!!!</span>
         </div>
     </div>
